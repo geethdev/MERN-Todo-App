@@ -40,7 +40,6 @@ router.put('/api/item/:id', async (req, res) => {
 })
 
 
-
 //lets delete item from database
 router.delete('/api/item/:id', async (req, res) => {
     try{
