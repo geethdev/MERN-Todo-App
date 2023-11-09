@@ -16,6 +16,15 @@ router.post('/api/item', async (req, res)=>{
     }
 })
 
+//lets create second route --get data from database
+router.get('/api/item', async (req, res) => {
+    try{
+        const allTodoItems = await todoItemsModel.find({});
+        res.status(200).json(allTodoItems);
+    }catch(err){
+        res.json(err);
+    }
+})
 
 
 
