@@ -32,8 +32,19 @@ useEffect(() => {
     }
   }
   getItemsList()
-},[]);
+},[listItems]);
 
+
+//delete item when click on delete
+const deleteItem = async (id) => {
+  try {
+    const res = await axios.delete(`http://localhost:5500/api/item/${id}`);
+    const newListItems = listItems.filter(item => item._id !== id);
+    setListItems(newListItems)
+  }catch(err) {
+    console.log(err);
+  }
+}
 
 
   return (
@@ -51,7 +62,7 @@ useEffect(() => {
             <p className="item-content">{item.item}</p>
             <button className="update-item
             ">Update</button>
-            <button className="delete-item">Delete</button>
+            <button className="delete-item" onClick={() => {deleteItem(item._id)}}>Delete</button>
             </div>
           ))
         }
