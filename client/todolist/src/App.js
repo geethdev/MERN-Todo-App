@@ -13,7 +13,7 @@ const addItem = async (e) => {
     const res = await axios.post('http://localhost:5500/api/item',{item: itemText})
     console.log(res);
   }catch(err) {
-    console.error(err);
+    console.log(err);
   }
 }
 

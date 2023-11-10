@@ -3,7 +3,7 @@ const router = require('express').Router();
 const todoItemsModel = require('../models/todoItems');
 
 //lets create our first route -- we will add our todo item to database
-router.post('/api/items', async (req, res)=>{
+router.post('/api/item', async (req, res)=>{
     try{
         const newItem = todoItemsModel({
             item: req.body.item
@@ -17,7 +17,7 @@ router.post('/api/items', async (req, res)=>{
 })
 
 //lets create second route --get data from database
-router.get('/api/items', async (req, res) => {
+router.get('/api/item', async (req, res) => {
     try{
         const allTodoItems = await todoItemsModel.find({});
         res.status(200).json(allTodoItems);
@@ -25,6 +25,7 @@ router.get('/api/items', async (req, res) => {
         res.json(err);
     }
 })
+
 
 
 //lets update item
