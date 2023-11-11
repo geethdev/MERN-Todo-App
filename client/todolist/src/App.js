@@ -5,7 +5,8 @@ import './App.css';
 function App() {
 const [itemText, setItemText ] = useState('');
 const [listItems, setListItems] = useState([]);
-
+const [isUpdating, setIsUpdating] = useState('');
+const [updateItemText, setUpdateItemText] = useState('');
 
 
 //add new todo item to database
@@ -48,6 +49,27 @@ const deleteItem = async (id) => {
 }
 
 
+//update item
+const updateItem = async (e) => {
+  e.preventDefault()
+  try {
+    const res = await axios.put(`http://localhost:5500/api/item/${isUpdating}`, {item: updateItemText})
+    setUpdateItemText('');
+    setIsUpdating('');
+    console.log(res.data);
+  } catch(err) {
+    console.log(err);
+  }
+}
+//before updating item we need to show input field where we will create our updated item
+const renderUpdateForm = () => {
+  <form className='update-form' onSubmit={(e) => {updateItem(e)}}>
+    <input className='update-new-input' type="text" placeholder='New Item' onChange={ e => {setUpdateItemText(e.target.value)}} value={updateItemText} />
+    <button className='update-new-btn' type='submit'> Update </button>
+  </form>
+}
+
+
   return (
     <div className="App">
       <h1>Todo List</h1>
@@ -60,10 +82,18 @@ const deleteItem = async (id) => {
         {
           listItems.map(item => (
             <div className="todo-item">
-            <p className="item-content">{item.item}</p>
-            <button className="update-item
-            ">Update</button>
-            <button className="delete-item" onClick={() => {deleteItem(item._id)}}>Delete</button>
+
+              {
+                isUpdating === item._id 
+                ? renderUpdateForm() 
+                : <>
+                    <p className="item-content">{item.item}</p>
+                    <button className="update-item" onClick={() => {setIsUpdating(item._id)}}>Update</button>
+                    <button className="delete-item" onClick={() => {deleteItem(item._id)}}>Delete</button>
+
+                  </>
+              }
+            
             </div>
           ))
         }

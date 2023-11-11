@@ -69,3 +69,22 @@ form button[type="submit"]{
   background-color: red;
   color: #fff;
 }
+
+.update-form{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.update-new-input{
+  width: 80%;
+  padding: 8px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  outline: none;
+}
+
+.update-new-btn{
+  background-color: darkorchid;
+  color: #fff;
+  cursor: pointer;
+}
