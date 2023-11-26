@@ -1,6 +1,7 @@
-[client]
-  publish = "client/todolist"
+[build]
+  publish = "client/todolist/build"
   functions = "server/functions"
 
 [build.environment]
   NODE_VERSION = "18.16.0"
+
