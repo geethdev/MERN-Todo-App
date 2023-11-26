@@ -1,5 +1,5 @@
 [client]
-  publish = "client/dev"
+  publish = "client/todolist/dev"
   functions = "server/functions"
 
 [build.environment]
