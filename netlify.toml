@@ -1,4 +1,4 @@
-[build]
+[client]
   publish = "client/dev"
   functions = "server/functions"
 
